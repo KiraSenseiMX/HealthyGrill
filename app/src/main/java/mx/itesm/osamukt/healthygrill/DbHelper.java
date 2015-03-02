@@ -18,7 +18,5 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL(DataBaseManager.CREATE_TABLE);
     }
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
-
-    }
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){}
 }

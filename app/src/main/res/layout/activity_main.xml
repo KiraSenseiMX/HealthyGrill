@@ -6,36 +6,44 @@
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
 
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:weightSum="1"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:gravity="top|right">
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:weightSum="1">
+            android:gravity="right">
 
-            <EditText
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/editText"
-                android:layout_weight="0.93" />
-
-            <ImageButton
+            <AutoCompleteTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/imageButton"
-                android:src="@android:drawable/ic_menu_search" />
+                android:id="@+id/autoCompleteTextView"
+                android:minWidth="265dp"
+                android:nestedScrollingEnabled="false"
+                android:maxLines="1"
+                android:maxLength="40"
+                android:autoText="false"
+                android:elegantTextHeight="false"
+                android:hint="Buscar: Receta"
+                android:textStyle="normal" />
 
+            <ImageButton
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:id="@+id/imageButton"
+                android:src="@android:drawable/ic_menu_search"
+                android:layout_gravity="right" />
         </LinearLayout>
 
         <ListView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/listView"
-            android:layout_weight="0.16" />
+            android:id="@+id/listView" />
+
     </LinearLayout>
 
 </FrameLayout>

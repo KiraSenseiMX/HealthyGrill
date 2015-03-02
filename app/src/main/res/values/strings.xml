@@ -5,4 +5,59 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
+    <string-array name="recipies_array">
+        <item>Asado de Res a la Pimienta</item>
+        <item>Pierna Adobada de Cerdo</item>
+        <item>Costillar de Cordero en Salsa de Menta</item>
+        <item>Pollo Asado</item>
+        <item>Pavo</item>
+        <item>Camarones Rebozados</item>
+        <item>Camarones con Queso Feta</item>
+        <item>Pescado en Costra de Sal</item>
+        <item>Salmón con Salsa de Vino Blanco</item>
+        <item>Mezcla de Vegetales Asados</item>
+        <item>Calabacitas Asadas</item>
+        <item>Espárragos Asados</item>
+        <item>Jitomates Rellenos</item>
+        <item>Pimientos Rellenos</item>
+        <item>Calabacitas Rellenas</item>
+        <item>Champiñones Rellenos</item>
+        <item>Papas al Horno</item>
+        <item>Papas al Romero</item>
+        <item>Papas Gratinadas</item>
+        <item>Baguette</item>
+        <item>Pan de Caja</item>
+        <item>Pan Integral</item>
+        <item>Bollitos</item>
+        <item>Bagels</item>
+        <item>Pretzels Suaves</item>
+        <item>Crostinis</item>
+        <item>Roles de Canela</item>
+        <item>Cuernitos de Chocolate</item>
+        <item>Donas</item>
+        <item>Pizza Fresca Gruesa</item>
+        <item>Estafado de Res</item>
+        <item>Pechugas de Pollo Rellenas</item>
+        <item>Macarrones con Queso</item>
+        <item>Tarta de Atún</item>
+        <item>Quiche Lorraine</item>
+        <item>Pastel de 3 Leches</item>
+        <item>Pastel de Zanahoria</item>
+        <item>Pastel de Chocolate</item>
+        <item>Brownies</item>
+        <item>Panqué de Cítricos</item>
+        <item>Panqué de Chocolate</item>
+        <item>Galletas de Mantequilla</item>
+        <item>Galletas con Chispas de Chocolate</item>
+        <item>Galletas de Avena</item>
+        <item>Pastel de Queso</item>
+        <item>Flan</item>
+        <item>Soufflé de Naranja</item>
+        <item>Soufflé de Chocolate</item>
+        <item>Profiteroles</item>
+        <item>Crème Brulée</item>
+        <item>Alfajores</item>
+        <item>Tarta de Cereza</item>
+    </string-array>
+
 </resources>

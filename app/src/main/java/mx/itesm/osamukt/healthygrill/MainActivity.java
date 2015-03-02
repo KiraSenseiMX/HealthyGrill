@@ -5,10 +5,11 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends ActionBarActivity implements View.OnClickListener {
@@ -16,7 +17,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     private Cursor cursor;
     private ListView lista;
     private SimpleCursorAdapter adapter;
-    private TextView tv;
+    private AutoCompleteTextView tv;
     private ImageButton bt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,35 +25,36 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         manager = new DataBaseManager(this);
         lista = (ListView) findViewById(R.id.listView);
-        tv = (TextView) findViewById(R.id.editText);
+        tv = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView);
         bt = (ImageButton) findViewById(R.id.imageButton);
         bt.setOnClickListener(this);
-        manager.eliminar("Asado de Res a la Pimienta");
-        manager.insertar("Asado de Res a la Pimienta",
-            "Convection Roast",
-            "475 °F",
-            "Charola",
-            "1 corte de sirloin de res (2 kg aproximadamente)\n" +
-                "Sal en grano\n" +
-                "2 cucharaditas de azúcar\n" +
-                "½ taza de granos de pimienta ligeramente aplastados con mortero o molcajete " +
-                    "(Combinar pimienta negra, blanca y rosa)\n" +
-                "1 barrita de mantequilla\n" +
-                "2 dientes de ajo apachurrados\n",
-            "Precalentar el horno. Colocar el corte de carne en la charola para hornear y condimentar " +
-                "generosamente con sal y azúcar. Presionar las pimientas sobre toda la superficie de " +
-                "la carne y colocar el Probe en el centro. Colocar la carne en el horno, conectar el " +
-                "Probe y programar horneado hasta la temperatura interna deseada. Para seleccionar el " +
-                "término deseado consultar la tabla en la página 7. Mientras la carne se hornea, " +
-                "derretir la mantequilla con el ajo en un recipiente pequeño hasta que tome un ligero " +
-                "color café. Remover los ajos y reservar la mantequilla. Cuando la carne esté lista, " +
-                "retirar el horno, vaciar la mantequilla, cubrir con papel aluminio y reposar 10 " +
-                "minutos antes de servir.");
-        String[] from = new String[]{manager.CN_RECIPENAME,manager.CN_INGREDIENTS};
-        int[] to = new int[]{android.R.id.text1,android.R.id.text2};
+        /*ELIMINAR O INSERTAR RECETAS A LA BASE DE DATOS
+        * manager.eliminar(StrReceta);
+        * manager.insertar(StrReceta,StrFunción,StrTemperatura,StrUtencilio,StrIngredientes,StrProcedimiento); */
+        manager.eliminar("Salmón con Salsa de Vino Blanco");
+        manager.insertar("Salmón con Salsa de Vino Blanco",
+                //"Carnes y Aves",
+                "Bake",
+                "450 °F",
+                "Charola asador",
+                "700 g de filete de salmón, corte grueso\n" +
+                        "Sal y pimienta\n" +
+                        "1 cucharada de mantequilla\n" +
+                        "2 cucharaditas de harina de trigo\n" +
+                        "1 taza de vino blanco seco\n" +
+                        "1 cucharada de cebollín fresco picado\n",
+                "Precalentar el horno. Colocar el salmón en la charola y sazonar con sal. Hornear por 15 minutos o hasta que adquiera un color opaco. Para preparar la salsa, derretir mantequilla a fuego medio, agregar harina y cocinar por 1 minuto, mezclando continuamente. Agregar el vino y cocinar hasta la ebullición, reducir el fuego al mínimo y cocinar hasta que se evapore la mitad del líquido (8 - 10 minutos). Agregar el cebollín y sazonar con sal y pimienta. Servir el salmón bañado en la salsa de vino blanco.");
         cursor = manager.cargarCursorRecipes();
+        String[] RecipeNamesArray = getResources().getStringArray(R.array.recipies_array);
+        ArrayAdapter<String> RecipeNamesAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,RecipeNamesArray);
+        tv.setThreshold(1);
+        tv.setAdapter(RecipeNamesAdapter);
+        /*TEST*/
+        String[] from = new String[]{manager.CN_RECIPENAME,manager.CN_PROCESS};
+        int[] to = new int[]{android.R.id.text1,android.R.id.text2};
         adapter = new SimpleCursorAdapter(this,android.R.layout.two_line_list_item,cursor,from,to,0);
         lista.setAdapter(adapter);
+        /*ENDTEST*/
     }
     @Override
      public void onClick(View view) {
@@ -63,7 +65,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     private class BuscarTask extends AsyncTask<Void, Void, Void> {
         @Override
         protected void onPreExecute() {
-            Toast.makeText(getApplicationContext(),"Buscando...",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"Buscando ...",Toast.LENGTH_SHORT).show();
         }
         @Override
         protected Void doInBackground(Void ... voids) {
@@ -73,7 +75,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         @Override
         protected void onPostExecute(Void aVoid) {
             adapter.changeCursor(cursor);
-            Toast.makeText(getApplicationContext(),"Listo",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"Encontrado",Toast.LENGTH_SHORT).show();
         }
     }
 }

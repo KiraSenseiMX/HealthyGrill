@@ -12,6 +12,7 @@ public class DataBaseManager {
     public static final String TABLE_NAME     = "recipes";
     public static final String CN_ID          = "_id";
     public static final String CN_RECIPENAME  = "recipeName";
+    //public static final String CN_CATEGORY    = "category";
     public static final String CN_FUNCTION    = "function";
     public static final String CN_TEMPERATURE = "temperature";
     public static final String CN_TOOL        = "tool";
@@ -21,6 +22,7 @@ public class DataBaseManager {
         + TABLE_NAME     + " ("
         + CN_ID          + " integer primary key autoincrement,"
         + CN_RECIPENAME  + " text not null,"
+        //+ CN_CATEGORY    + " text not null,"
         + CN_FUNCTION    + " text,"
         + CN_TEMPERATURE + " text,"
         + CN_TOOL        + " text,"
@@ -32,9 +34,10 @@ public class DataBaseManager {
         helper = new DbHelper(context);
         db = helper.getWritableDatabase();
     }
-    private ContentValues generarContentValues (String recipeName, String function, String temperature, String tool, String ingredients, String process) {
+    private ContentValues generarContentValues (String recipeName, /*String category,*/ String function, String temperature, String tool, String ingredients, String process) {
         ContentValues valores = new ContentValues();
         valores.put(CN_RECIPENAME, recipeName);
+        //valores.put(CN_CATEGORY, category);
         valores.put(CN_FUNCTION, function);
         valores.put(CN_TEMPERATURE, temperature);
         valores.put(CN_TOOL, tool);
@@ -42,9 +45,9 @@ public class DataBaseManager {
         valores.put(CN_PROCESS, process);
         return valores;
     }
-    private String[] columnas = new String[]{CN_ID,CN_RECIPENAME,CN_FUNCTION,CN_TEMPERATURE,CN_TOOL,CN_INGREDIENTS,CN_PROCESS};
-    public void insertar (String recipeName, String function, String temperature, String tool, String ingredients, String process){
-        db.insert(TABLE_NAME, null, generarContentValues(recipeName, function, temperature, tool, ingredients, process));
+    private String[] columnas = new String[]{CN_ID,CN_RECIPENAME,/*CN_CATEGORY,*/CN_FUNCTION,CN_TEMPERATURE,CN_TOOL,CN_INGREDIENTS,CN_PROCESS};
+    public void insertar (String recipeName,/* String category,*/ String function, String temperature, String tool, String ingredients, String process){
+        db.insert(TABLE_NAME, null, generarContentValues(recipeName,/* category,*/ function, temperature, tool, ingredients, process));
     }
     public void eliminar (String recipeName) {
         db.delete(TABLE_NAME,CN_RECIPENAME+"=?",new String[]{recipeName});
